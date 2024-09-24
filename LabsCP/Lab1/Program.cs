@@ -1,4 +1,7 @@
-﻿namespace Lab1
+﻿using System;
+using System.IO;
+
+namespace Lab1
 {
     public class Program
     {
