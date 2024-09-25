@@ -15,13 +15,17 @@ namespace Lab1_Test
             Console.WriteLine("ParseUserInput method : valid input test : parse " + input.ToString());
             Console.WriteLine("Expected output : " + expected.ToString());
             int result = Program.ParseUserInput(input);
-            Assert.Equal(100, result);
+            Assert.Equal(expected, result);
 
             if (result == expected ) 
             {
                 Console.WriteLine("Test passed");
-                Console.WriteLine();
             }
+            else
+            {
+                Console.WriteLine("Test failed");
+            }
+            Console.WriteLine();
         }
 
         [Fact]
@@ -39,8 +43,12 @@ namespace Lab1_Test
             if (exception.ParamName == expected)
             {
                 Console.WriteLine("Test passed");
-                Console.WriteLine();
             }
+            else
+            {
+                Console.WriteLine("Test failed");
+            }
+            Console.WriteLine();
         }
 
         [Fact]
@@ -52,13 +60,17 @@ namespace Lab1_Test
             Console.WriteLine("ParseUserInput method : invalid input test : parse " + input.ToString());
             Console.WriteLine("Expected output : " + expected);
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => Program.ParseUserInput(input));
-            Assert.Equal("Input number must be in the range from 3 to 2*10^9", exception.ParamName);
+            Assert.Equal(expected, exception.ParamName);
 
             if (exception.ParamName == expected)
             {
                 Console.WriteLine("Test passed");
-                Console.WriteLine();
             }
+            else
+            {
+                Console.WriteLine("Test failed");
+            }
+            Console.WriteLine();
         }
 
         [Fact]
@@ -77,8 +89,12 @@ namespace Lab1_Test
             if (numeratorExpected == numerator && denominatorExpected == denominator)
             {
                 Console.WriteLine("Test passed");
-                Console.WriteLine();
             }
+            else
+            {
+                Console.WriteLine("Test failed");
+            }
+            Console.WriteLine();
         }
 
         [Fact]
@@ -97,8 +113,12 @@ namespace Lab1_Test
             if (gcd == gcdExpected)
             {
                 Console.WriteLine("Test passed");
-                Console.WriteLine();
             }
+            else
+            {
+                Console.WriteLine("Test failed");
+            }
+            Console.WriteLine();
         }
     }
 }
