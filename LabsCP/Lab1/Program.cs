@@ -20,7 +20,7 @@ namespace Lab1
                 (numerator, denominator) = FindLargestFraction(inputNumber);
 
                 File.WriteAllText(outputFile, numerator + " " + denominator);
-                Console.WriteLine(numerator + ", " + denominator);
+                ShowResult(inputNumber, numerator, denominator);
             }
             catch (Exception ex)
             {
@@ -46,6 +46,12 @@ namespace Lab1
                 throw new ArgumentOutOfRangeException("Input number must be in the range from 3 to 2*10^9");
             }
             return inputNumber;
+        }
+
+        static void ShowResult(int inputNumber, int numerator, int denominator)
+        {
+            Console.WriteLine("Input from INPUT.txt: " + inputNumber.ToString());
+            Console.WriteLine("Result fraction is: " + numerator.ToString() + "/" + denominator.ToString());
         }
 
         /// <summary>
