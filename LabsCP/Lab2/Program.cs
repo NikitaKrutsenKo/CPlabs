@@ -19,6 +19,7 @@ namespace Lab2
                 double baseValue = double.Parse(input[1]);
 
                 double result = Calculate(n, baseValue);
+                Console.WriteLine("Input: " + n.ToString() + " " + baseValue.ToString());
                 Console.WriteLine("Result: " + result);
 
                 File.WriteAllText(outputFile, result.ToString());
