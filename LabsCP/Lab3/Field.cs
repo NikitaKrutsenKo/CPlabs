@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Lab3
 {
-    internal class Field
+    public class Field
     {
+        public int minNumberOfSteps;
+        public Field()
+        {
+            minNumberOfSteps = int.MaxValue;
+        }
     }
 }
