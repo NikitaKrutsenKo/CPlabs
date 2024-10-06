@@ -1,23 +1,30 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Solution>$(Solution)</Solution>
-    <SolutionTest>$(Solution)_Test</SolutionTest>
-    <SolutionPath>$(MSBuildProjectDirectory)\LabsCP\$(Solution)\$(Solution).csproj</SolutionPath>
-    <SolutionTestPath>$(MSBuildProjectDirectory)\LabsCP\$(SolutionTest)\$(SolutionTest).csproj</SolutionTestPath>
-  </PropertyGroup>
+<Project>
+   <PropertyGroup>
+      <Solution Condition=" '$(Solution)' == '' "></Solution>
+   </PropertyGroup>
 
-  <!-- Target for building the project -->
-  <Target Name="Build">
-    <Exec Command="dotnet build $(SolutionPath)" />
-  </Target>
+   <ItemGroup>
+      <ProjectFile Include="$(Solution)\*.csproj" />
+   </ItemGroup>
 
-  <!-- Target for running the project -->
-  <Target Name="Run">
-    <Exec Command="dotnet run --project $(SolutionPath)" />
-  </Target>
+   <Target Name="Build">
+      <PropertyGroup>
+         <BuildProject>$(Solution)\$(Solution).csproj</BuildProject>
+      </PropertyGroup>
+      <MSBuild Projects="$(BuildProject)" Targets="Restore;Build" />
+   </Target>
 
-  <!-- Target for testing the project -->
-  <Target Name="Test">
-    <Exec Command="dotnet test $(SolutionTestPath)" />
-  </Target>
+   <Target Name="Test">
+      <PropertyGroup>
+         <TestDirectory>$(Solution)_Test</TestDirectory>
+      </PropertyGroup>
+      <Exec Command="dotnet test --logger &quot;console;verbosity=detailed&quot;" WorkingDirectory="$(TestDirectory)" />
+   </Target>
+
+   <Target Name="Run">
+      <PropertyGroup>
+         <RunProject>$(Solution).csproj</RunProject>
+      </PropertyGroup>
+      <Exec Command="dotnet run --project &quot;$(RunProject)&quot;" WorkingDirectory="$(Solution)" />
+   </Target>
 </Project>
