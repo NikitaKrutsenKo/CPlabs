@@ -83,6 +83,7 @@ namespace Lab3
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
     }
 }
