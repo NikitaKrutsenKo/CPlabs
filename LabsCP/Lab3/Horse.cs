@@ -24,7 +24,7 @@ namespace Lab3
             CalculateBoardCoeffHelper(startPosX, startPosY);
         }
 
-        private void CalculateBoardCoeffHelper(int currentX, int currentY)
+        private Board CalculateBoardCoeffHelper(int currentX, int currentY)
         {
             int[,] horseMove = { {-2, 1}, {-2, -1}, {2, 1}, {2, -1}, {1, 2}, {1, -2}, {-1, 2}, {-1, -2} };
             List<Tuple<int, int>> listToProcess = new List<Tuple<int, int>>()
@@ -59,9 +59,10 @@ namespace Lab3
                 listToProcess = newList.Select(item => new Tuple<int, int>(item.Item1, item.Item2)).ToList();
                 newList.Clear();
             }
+            return boardCoeff;
         }
 
-        private bool PossitionIsValid(int currentX, int currentY, int valueX, int valueY) 
+        public bool PossitionIsValid(int currentX, int currentY, int valueX, int valueY) 
         {
             if(currentX + valueX < 0 ||
                 currentY + valueY < 0 ||
