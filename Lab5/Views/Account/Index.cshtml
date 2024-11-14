@@ -1,0 +1,38 @@
+﻿@model Lab5.Models.UserViewModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">User Profile</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 font-weight-bold">Username:</div>
+                        <div class="col-md-8">@Model.Username</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 font-weight-bold">Full Name:</div>
+                        <div class="col-md-8">@Model.FullName</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 font-weight-bold">Email:</div>
+                        <div class="col-md-8">@Model.Email</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 font-weight-bold">Phone Number:</div>
+                        <div class="col-md-8">@Model.PhoneNumber</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back to Home</a>
+                    <a asp-controller="Account" asp-action="Logout" class="btn btn-danger float-right">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
