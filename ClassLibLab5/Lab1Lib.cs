@@ -10,19 +10,11 @@ namespace ClassLibLab5
     {
         public static List<double> RunLab1(string userInput)
         {
-            try
-            {
-                int input = CheckUserInput(userInput);
+            int input = CheckUserInput(userInput);
 
-                int numerator, denominator;
-                (numerator, denominator) = FindLargestFraction(input);
-                return new List<double> { numerator, denominator };
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("An error occurred:" + ex.Message);
-            }
-            return new List<double>();
+            int numerator, denominator;
+            (numerator, denominator) = FindLargestFraction(input);
+            return new List<double> { numerator, denominator };
         }
 
         private static int CheckUserInput(string input)

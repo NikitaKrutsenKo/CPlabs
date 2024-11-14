@@ -12,11 +12,11 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-@if (ViewBag.Result != null)
-{
-    <p>Result: @ViewBag.Result[0]</p>
-}
-else if(ViewBag.Error != null)
+@if (ViewBag.Error != null)
 {
     <p>Oops, @ViewBag.Error</p>
+}
+else if (ViewBag.Result != null)
+{
+    <p>Result: @ViewBag.Result[0]</p>
 }

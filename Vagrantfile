@@ -4,14 +4,15 @@ Vagrant.configure("2") do |config|
   config.vm.define "ubuntu" do |ubuntu|
     ubuntu.vm.box = "bento/ubuntu-20.04"
     ubuntu.vm.hostname = "VagrantVM"
-    
+    ubuntu.vm.network "forwarded_port", guest: 7031, host: 7031
+    ubuntu.vm.network "private_network", ip: "192.168.67.26"
     ubuntu.vm.provider "virtualbox" do |vb|
       vb.name = "VagrantVM"
       vb.gui = false
       vb.memory = "10240"
       vb.cpus = 5
     end
-    
+    ubuntu.vm.synced_folder ".", "/home/vagrant/project"
     ubuntu.ssh.insert_key = false
 
     ubuntu.vm.provision "shell", inline: <<-SHELL
