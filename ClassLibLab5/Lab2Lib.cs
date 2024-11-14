@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibraryForLab4
+namespace ClassLibLab5
 {
     public class Lab2Lib
     {

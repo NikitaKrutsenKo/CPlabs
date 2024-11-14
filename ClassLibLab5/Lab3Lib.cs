@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibraryForLab4
+namespace ClassLibLab5
 {
     public class Lab3Lib
     {
@@ -39,7 +39,7 @@ namespace ClassLibraryForLab4
 
         public static string[] GetUserInput(string userInput)
         {
-            string[] input = File.ReadAllText(userInput).Trim().Split(" ");
+            string[] input = userInput.Trim().Split(" ");
             int i = 0;
             foreach (string line in input)
             {

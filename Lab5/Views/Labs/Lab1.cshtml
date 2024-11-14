@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Lab1";
+}
+
+<h1>Lab 1</h1>
+<p>Enter a number and get the largest irreducible fraction, the denominator and numerical of which add up to this number</p>
+<form asp-action="Lab1Result" method="post">
+    <div class="form-group">
+        <input name="userInput" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if (ViewBag.Result != null)
+{
+    <p>Result: @ViewBag.Result[0] / @ViewBag.Result[1]</p>
+}
+else if (ViewBag.Error != null)
+{
+    <p>Oops, @ViewBag.Error</p>
+}

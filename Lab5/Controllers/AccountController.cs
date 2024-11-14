@@ -171,7 +171,7 @@ namespace Lab5.Controllers
             public UserMetadata UserMetadata { get; set; }
         }
 
-        public class UserMetadata
+        private class UserMetadata
         {
             [JsonPropertyName("full_name")]
             public string FullName { get; set; }

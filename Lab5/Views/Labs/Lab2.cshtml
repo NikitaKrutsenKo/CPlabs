@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Lab2";
+}
+
+<h1>Lab 2</h1>
+<p>Enter the two natural numbers N and K in decimal (2 ≤ K ≤ 10; 2 ≤ N; 4 ≤ N+K ≤ 18).</p>
+<p>And get the number of N-digit numbers in a base-K number system such that their notation does not contain two consecutive zeros.</p>
+<form asp-action="Lab2Result" method="post">
+    <div class="form-group">
+        <input name="userInput" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if (ViewBag.Result != null)
+{
+    <p>Result: @ViewBag.Result[0]</p>
+}
+else if (ViewBag.Error != null)
+{
+    <p>Oops, @ViewBag.Error</p>
+}

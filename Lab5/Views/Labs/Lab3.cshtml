@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Lab3";
+}
+
+<h1>Lab 3</h1>
+<p>Enter the positions of the knights on the board (the knights move at the same time)</p>
+<p>Get the number of moves in which they will meet (or -1 if a crossmatch is not possible)</p>
+<form asp-action="Lab3Result" method="post">
+    <div class="form-group">
+        <input name="userInput" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if (ViewBag.Result != null)
+{
+    <p>Result: @ViewBag.Result[0]</p>
+}
+else if(ViewBag.Error != null)
+{
+    <p>Oops, @ViewBag.Error</p>
+}
