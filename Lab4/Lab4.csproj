@@ -11,6 +11,7 @@
 	  <Authors>MykytaKrutsenko</Authors>
 	  <Description>Lab4</Description>
 	  <ToolCommandName>Lab4</ToolCommandName>
+	  <PackageId>MKrutsenko</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

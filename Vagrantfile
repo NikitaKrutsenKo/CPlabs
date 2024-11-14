@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
 
     ubuntu.vm.provision "shell", privileged: false, inline: <<-SHELL
       dotnet nuget add source http://10.0.2.2:5000/v3/index.json -n "BaGet"
-      dotnet tool install -g Lab4 --version 1.0.6 --add-source http://10.0.2.2:5000/v3/index.json
+      dotnet tool install -g MKrutsenko --version 1.0.6 --add-source http://10.0.2.2:5000/v3/index.json
       
       echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.bashrc
       export PATH="$PATH:$HOME/.dotnet/tools"
@@ -73,7 +73,7 @@ Vagrant.configure("2") do |config|
       refreshenv
       
       dotnet nuget add source http://10.0.2.2:5000/v3/index.json -n "BaGet"
-      dotnet tool install -g Lab4 --version 1.0.6 --add-source http://10.0.2.2:5000/v3/index.json
+      dotnet tool install -g MKrutsenko --version 1.0.6 --add-source http://10.0.2.2:5000/v3/index.json
     SHELL
   end
 
@@ -100,7 +100,7 @@ Vagrant.configure("2") do |config|
 
     macos.vm.provision "shell", privileged: false, inline: <<-SHELL
       dotnet nuget add source http://10.0.2.2:5000/v3/index.json -n "BaGet"
-      dotnet tool install -g Lab4 --version 1.0.6 --add-source http://10.0.2.2:5000/v3/index.json
+      dotnet tool install -g MKrutsenko --version 1.0.6 --add-source http://10.0.2.2:5000/v3/index.json
 
       echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.zshrc
       export PATH="$PATH:$HOME/.dotnet/tools"
