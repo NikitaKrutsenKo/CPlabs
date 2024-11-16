@@ -1,0 +1,47 @@
+﻿using Lab6.Data;
+using Lab6.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace Lab6.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ShiftController : ControllerBase
+    {
+        private readonly HospitalManagementDbContext _context;
+
+        public ShiftController(HospitalManagementDbContext context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Shift>>> GetShifts()
+        {
+            return await _context.Shifts.ToListAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Shift>> GetShift(int id)
+        {
+            var shift = await _context.Shifts.FindAsync(id);
+
+            if (shift == null)
+            {
+                return NotFound();
+            }
+
+            return shift;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Shift>> CreateShift(Shift shift)
+        {
+            _context.Shifts.Add(shift);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetShift), new { id = shift.Shift_ID }, shift);
+        }
+    }
+}
