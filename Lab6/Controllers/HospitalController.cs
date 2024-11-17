@@ -38,15 +38,6 @@ namespace Lab6.Controllers
 
             return hospital;
         }
-
-        [HttpPost]
-        public async Task<ActionResult<Hospital>> CreateHospital(Hospital hospital)
-        {
-            _context.Hospitals.Add(hospital);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetHospital), new { id = hospital.Hospital_ID }, hospital);
-        }
     }
     
 }

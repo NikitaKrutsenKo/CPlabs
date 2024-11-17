@@ -1,3 +1,6 @@
+using Lab6.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Lab6
 {
     public class Program
@@ -7,6 +10,25 @@ namespace Lab6
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<HospitalManagementDbContext>(options =>
+            {
+                var dbType = builder.Configuration.GetValue<string>("DatabaseType");
+                switch (dbType)
+                {
+                    case "MSSQL":
+                        options.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLConnection"));
+                        break;
+                    case "Postgres":
+                        options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"));
+                        break;
+                    case "SqlLite":
+                        options.UseSqlite(builder.Configuration.GetConnectionString("SqlLiteConnection"));
+                        break;
+                    case "InMemory":
+                        options.UseInMemoryDatabase("InMemoryDb");
+                        break;
+                }
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -14,6 +36,21 @@ namespace Lab6
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                try
+                {
+                    var services = scope.ServiceProvider;
+                    var context = services.GetRequiredService<HospitalManagementDbContext>();
+                    HospitalManagementDbContext.Seed(context);
+                }
+                catch (Exception ex)
+                {
+                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the database.");
+                }
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

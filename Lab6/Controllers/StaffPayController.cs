@@ -38,14 +38,5 @@ namespace Lab6.Controllers
 
             return staffPay;
         }
-
-        [HttpPost]
-        public async Task<ActionResult<StaffPay>> CreateStaffPay(StaffPay staffPay)
-        {
-            _context.StaffPay.Add(staffPay);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetStaffPay), new { id = staffPay.Pay_ID }, staffPay);
-        }
     }
 }

@@ -41,13 +41,46 @@ namespace Lab6.Controllers
             return roster;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<RosterOfStaffOnShift>> CreateRoster(RosterOfStaffOnShift roster)
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<RosterOfStaffOnShift>>> SearchRoster(
+            [FromQuery] DateTime? startDate,
+            [FromQuery] DateTime? endDate,
+            [FromQuery] List<int>? staffIds,
+            [FromQuery] string? shiftNameStart)
         {
-            _context.RosterOfStaffOnShifts.Add(roster);
-            await _context.SaveChangesAsync();
+            
+            DateTime? utcStartDate = startDate?.ToUniversalTime();
+            DateTime? utcEndDate = endDate?.ToUniversalTime();
 
-            return CreatedAtAction(nameof(GetRoster), new { id = roster.Roster_ID }, roster);
+            
+            var query = _context.RosterOfStaffOnShifts
+                .Include(r => r.Staff)
+                .Include(r => r.Shift)
+                .AsQueryable();
+
+            
+            if (utcStartDate.HasValue)
+                query = query.Where(r => r.StartDate >= utcStartDate);
+
+            if (utcEndDate.HasValue)
+                query = query.Where(r => r.EndDate <= utcEndDate);
+
+            if (staffIds != null && staffIds.Any())
+                query = query.Where(r => staffIds.Contains(r.Staff_ID));
+
+            if (!string.IsNullOrEmpty(shiftNameStart))
+                query = query.Where(r => r.Shift.ShiftName.StartsWith(shiftNameStart));
+
+            var results = await query.ToListAsync();
+
+            TimeZoneInfo ukraineTimeZone = TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time");
+            results.ForEach(r =>
+            {
+                r.StartDate = TimeZoneInfo.ConvertTimeFromUtc(r.StartDate, ukraineTimeZone);
+                r.EndDate = TimeZoneInfo.ConvertTimeFromUtc(r.EndDate, ukraineTimeZone);
+            });
+
+            return results;
         }
     }
 }

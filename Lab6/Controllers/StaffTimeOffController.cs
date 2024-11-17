@@ -40,14 +40,5 @@ namespace Lab6.Controllers
 
             return staffTimeOff;
         }
-
-        [HttpPost]
-        public async Task<ActionResult<StaffTimeOff>> CreateStaffTimeOff(StaffTimeOff staffTimeOff)
-        {
-            _context.StaffTimeOffs.Add(staffTimeOff);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetStaffTimeOff), new { id = staffTimeOff.StaffTimeOff_ID }, staffTimeOff);
-        }
     }
 }

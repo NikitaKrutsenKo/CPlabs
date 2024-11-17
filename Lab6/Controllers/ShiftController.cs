@@ -34,14 +34,5 @@ namespace Lab6.Controllers
 
             return shift;
         }
-
-        [HttpPost]
-        public async Task<ActionResult<Shift>> CreateShift(Shift shift)
-        {
-            _context.Shifts.Add(shift);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetShift), new { id = shift.Shift_ID }, shift);
-        }
     }
 }

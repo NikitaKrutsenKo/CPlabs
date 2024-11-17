@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Lab6.Models
+﻿namespace Lab6.Models
 {
     public class Shift
     {
-        [Key]
         public int Shift_ID { get; set; }
         public string DayOrNight { get; set; }
         public string ShiftName { get; set; }

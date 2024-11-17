@@ -34,14 +34,5 @@ namespace Lab6.Controllers
 
             return ward;
         }
-
-        [HttpPost]
-        public async Task<ActionResult<Ward>> CreateWard(Ward ward)
-        {
-            _context.Wards.Add(ward);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetWard), new { id = ward.Ward_ID }, ward);
-        }
     }
 }

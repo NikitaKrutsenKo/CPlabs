@@ -40,15 +40,6 @@ namespace Lab6.Controllers
 
             return staff;
         }
-
-        [HttpPost]
-        public async Task<ActionResult<Staff>> CreateStaff(Staff staff)
-        {
-            _context.Staff.Add(staff);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetStaff), new { id = staff.Staff_ID }, staff);
-        }
     }
 
     

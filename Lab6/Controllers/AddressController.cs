@@ -36,15 +36,5 @@ namespace Lab6.Controllers
 
             return address;
         }
-
-        // POST: api/Address
-        [HttpPost]
-        public async Task<ActionResult<Address>> CreateAddress(Address address)
-        {
-            _context.Addresses.Add(address);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetAddress), new { id = address.Address_ID }, address);
-        }
     }
 }
