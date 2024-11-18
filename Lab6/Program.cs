@@ -43,6 +43,7 @@ namespace Lab6
                 {
                     var services = scope.ServiceProvider;
                     var context = services.GetRequiredService<HospitalManagementDbContext>();
+                    context.Database.Migrate();
                     HospitalManagementDbContext.Seed(context);
                 }
                 catch (Exception ex)
