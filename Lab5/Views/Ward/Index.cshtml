@@ -1,0 +1,30 @@
+﻿@model List<Ward>
+
+@{
+    ViewData["Title"] = "Wards";
+}
+
+<h2>Wards</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ward ID</th>
+            <th>Ward Name</th>
+            <th>Ward Location</th>
+            <th>Ward Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ward in Model)
+        {
+            <tr>
+                <td>@ward.Ward_ID</td>
+                <td>@ward.WardName</td>
+                <td>@ward.WardLocation</td>
+                <td>@ward.WardDescription</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

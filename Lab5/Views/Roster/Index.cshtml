@@ -1,0 +1,27 @@
+﻿@model List<RosterViewModel>
+
+<h1>Roster List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Roster ID</th>
+            <th>Staff Name</th>
+            <th>Shift Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var roster in Model)
+        {
+            <tr>
+                <td>@roster.Roster_ID</td>
+                <td>@roster.StaffName</td>
+                <td>@roster.ShiftName</td>
+                <td>@roster.StartDate</td>
+                <td>@roster.EndDate</td>
+            </tr>
+        }
+    </tbody>
+</table>

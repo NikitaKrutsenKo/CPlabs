@@ -1,0 +1,24 @@
+﻿@model List<Hospital>
+
+<h1>Hospital List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Hospital Name</th>
+            <th>City</th>
+            <th>State</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hospital in Model)
+        {
+            <tr>
+                <td>@hospital.HospitalName</td>
+                <td>@hospital.Address.City</td>
+                <td>@hospital.Address.StateProvince</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

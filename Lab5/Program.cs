@@ -46,7 +46,12 @@ namespace Lab5
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
 
-
+            builder.Services.AddHttpClient("HospitalApiClient", client =>
+            {
+                var baseUrl = builder.Configuration["ApiSettings:BaseUrl"];
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
 
             var app = builder.Build();
 

@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Search Ward";
+}
+
+<h2>Search for a Ward</h2>
+
+<form method="post" asp-action="Search">
+    <div class="form-group">
+        <label for="id">Enter Ward ID:</label>
+        <input type="number" class="form-control" id="id" name="id" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger mt-3">
+        <strong>Error:</strong> @ViewBag.ErrorMessage
+    </div>
+}
+

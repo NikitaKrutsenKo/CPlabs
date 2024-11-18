@@ -1,0 +1,16 @@
+﻿@model Ward
+
+@{
+    ViewData["Title"] = "Ward Details";
+}
+
+<h2>Ward Details</h2>
+
+<div>
+    <h3>@Model.WardName</h3>
+    <p><strong>Ward ID:</strong> @Model.Ward_ID</p>
+    <p><strong>Ward Location:</strong> @Model.WardLocation</p>
+    <p><strong>Ward Description:</strong> @Model.WardDescription</p>
+    <a href="@Url.Action("Index", "Ward")" class="btn btn-secondary">Back to Ward List</a>
+</div>
+

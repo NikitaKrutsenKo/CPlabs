@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Search Hospital";
+}
+
+<h1>Search Hospital</h1>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="id">Hospital ID:</label>
+        <input type="number" class="form-control" id="id" name="id" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+

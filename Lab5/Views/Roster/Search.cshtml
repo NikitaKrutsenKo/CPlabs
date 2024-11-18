@@ -1,0 +1,55 @@
+﻿@model List<RosterViewModel>
+
+<h1>Search Rosters</h1>
+
+<form method="get" action="@Url.Action("Search", "Roster")">
+    <div>
+        <label>Start Date:</label>
+        <input type="date" name="startDate" />
+    </div>
+    <div>
+        <label>End Date:</label>
+        <input type="date" name="endDate" />
+    </div>
+    <div>
+        <label>Staff IDs (comma-separated):</label>
+        <input type="text" name="staffIds" />
+    </div>
+    <div>
+        <label>Shift Name Starts With:</label>
+        <input type="text" name="shiftNameStart" />
+    </div>
+    <button type="submit">Search</button>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Roster ID</th>
+                <th>Staff Name</th>
+                <th>Shift Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var roster in Model)
+            {
+                <tr>
+                    <td>@roster.Roster_ID</td>
+                    <td>@roster.StaffName</td>
+                    <td>@roster.ShiftName</td>
+                    <td>@roster.StartDate</td>
+                    <td>@roster.EndDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No results found.</p>
+}
+
