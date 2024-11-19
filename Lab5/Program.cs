@@ -51,7 +51,15 @@ namespace Lab5
                 var baseUrl = builder.Configuration["ApiSettings:BaseUrl"];
                 client.BaseAddress = new Uri(baseUrl);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
+            })
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+                {
+                    return true;
+                }
             });
+            ;
 
             var app = builder.Build();
 
