@@ -1,22 +1,31 @@
-﻿using Lab5.Models;
+﻿using Lab5.Lab6GetToken;
+using Lab5.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Lab5.Controllers
 {
     public class RosterController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
 
-        public RosterController(IHttpClientFactory httpClientFactory)
+
+        public RosterController(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
         }
 
         // GET: /Roster
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient("HospitalApiClient");
+            var token = await GetToken.GetAccessTokenAsync(_httpClientFactory, _configuration);
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await client.GetAsync("Roster");
 
             if (!response.IsSuccessStatusCode)
@@ -50,6 +59,9 @@ namespace Lab5.Controllers
         public async Task<IActionResult> Search(DateTime? startDate, DateTime? endDate, List<int>? staffIds, string? shiftNameStart)
         {
             var client = _httpClientFactory.CreateClient("HospitalApiClient");
+            var token = await GetToken.GetAccessTokenAsync(_httpClientFactory, _configuration);
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var query = new List<string>();
 
             if (startDate.HasValue)

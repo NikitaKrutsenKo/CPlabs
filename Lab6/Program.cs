@@ -1,5 +1,7 @@
 using Lab6.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Lab6
 {
@@ -28,6 +30,49 @@ namespace Lab6
                         options.UseInMemoryDatabase("InMemoryDb");
                         break;
                 }
+            });
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = "https://dev-a316gfmjg35kq430.us.auth0.com/";
+                options.Audience = "hospital-api";
+
+                options.RequireHttpsMetadata = false;
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        Console.WriteLine($"OnAuthenticationFailed: {context.Exception.Message}");
+                        return Task.CompletedTask;
+                    },
+                    OnTokenValidated = context =>
+                    {
+                        var claims = context.Principal?.Claims.Select(c => $"{c.Type}: {c.Value}");
+                        Console.WriteLine($"Token validated. Claims: {string.Join(", ", claims ?? Array.Empty<string>())}");
+                        return Task.CompletedTask;
+                    },
+                    OnMessageReceived = context =>
+                    {
+                        Console.WriteLine($"Token received: {context.Token}");
+                        return Task.CompletedTask;
+                    },
+                    OnChallenge = context =>
+                    {
+                        Console.WriteLine($"OnChallenge: {context.Error}, {context.ErrorDescription}");
+                        return Task.CompletedTask;
+                    }
+                };
             });
 
             builder.Services.AddControllers();
@@ -61,7 +106,7 @@ namespace Lab6
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

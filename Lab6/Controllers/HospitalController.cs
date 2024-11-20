@@ -2,9 +2,12 @@
 using Lab6.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab6.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class HospitalController : ControllerBase

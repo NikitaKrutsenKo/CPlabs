@@ -59,7 +59,6 @@ namespace Lab5
                     return true;
                 }
             });
-            ;
 
             var app = builder.Build();
 
