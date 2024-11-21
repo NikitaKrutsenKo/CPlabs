@@ -26,6 +26,14 @@ namespace Lab5.Models
         public string WardLocation { get; set; }
         public string WardDescription { get; set; }
     }
+    public class WardV2
+    {
+        public int Ward_ID { get; set; }
+        public string WardName { get; set; }
+        public string WardLocation { get; set; }
+        public string WardDescription { get; set; }
+        public string AdditionalInfo { get; set;}
+    }
 
     public class RosterViewModel
     {

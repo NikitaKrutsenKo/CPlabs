@@ -59,7 +59,7 @@ namespace Lab5
                     return true;
                 }
             });
-
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
