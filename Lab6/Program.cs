@@ -27,7 +27,7 @@ namespace Lab6
                         options.UseSqlite(builder.Configuration.GetConnectionString("SqlLiteConnection"));
                         break;
                     case "InMemory":
-                        options.UseInMemoryDatabase("InMemoryDb");
+                        options.UseInMemoryDatabase(builder.Configuration.GetConnectionString("Lab6Db"));
                         break;
                 }
             });
