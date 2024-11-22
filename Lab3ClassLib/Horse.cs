@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab3
+namespace Lab3ClassLib
 {
     public class Horse
     {

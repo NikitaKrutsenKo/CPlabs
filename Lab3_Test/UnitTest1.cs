@@ -1,3 +1,4 @@
+using Lab3ClassLib;
 using Lab3;
 
 namespace Lab3_Test
