@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Headers;
 using Lab13.Lab6GetToken;
+using Lab13.Models;
 
 namespace Lab13.Controllers
 {

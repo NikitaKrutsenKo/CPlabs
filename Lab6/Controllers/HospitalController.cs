@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Lab6.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class HospitalController : ControllerBase
